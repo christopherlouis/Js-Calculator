@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Kalkulator</title>
+        <!-- LINK BOOTSTRAP -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <!-- LINK BOOTSTRAP -->
+
+        <script>
+            $(function(){
+                var v = '';
+                var answer =0 ;
+                //ambil angka
+                $('#one').click(function(){
+                    v += 1;
+		            $('#hasil').html(v);
+	            });
+                $('#two').click(function(){
+                    v += 2;
+		            $('#hasil').html(v);
+	            });
+                $('#three').click(function(){
+                    v += 3;
+		            $('#hasil').html(v);
+	            });
+                $('#four').click(function(){
+                    v += 4;
+		            $('#hasil').html(v);
+	            });
+                $('#five').click(function(){
+                    v += 5;
+		            $('#hasil').html(v);
+	            });
+                $('#six').click(function(){
+                    v += 6;
+		            $('#hasil').html(v);
+	            });
+                $('#seven').click(function(){
+                    v += 7;
+		            $('#hasil').html(v);
+	            });
+                $('#eight').click(function(){
+                    v += 8;
+		            $('#hasil').html(v);
+	            });
+                $('#nine').click(function(){
+                    v += 9;
+		            $('#hasil').html(v);
+	            });
+                $('#nul').click(function(){
+                    v += 0;
+		            $('#hasil').html(v);
+	            });
+                //operator
+                $('#add').click(function(){
+                    v += '+';
+                    $('#hasil').html(v);
+                });
+                $('#subtract').click(function(){
+                    v += '-';
+                    $('#hasil').html(v);
+                });
+                $('#multiply').click(function(){
+                    v += '*';
+                    $('#hasil').html(v);
+                });
+                $('#divide').click(function(){
+                    v += '/';
+                    $('#hasil').html(v);
+                });
+                //hasil
+                $('#equal').click(function(){
+                    var co = 0;
+                    var co1 = 1;
+                    var co2 = 0;
+                    var v1 = ['','','','','','','','','','','','','','','','',''];
+                    var v2 = '';
+                    var i;
+                    for (i = 0; i < v.length; i++) {
+                        v1[co] += v[i];
+                        if(v[i] == '+' || v[i] == '-' || v[i] == '*' || v[i] == '/'){
+                            v2 += v[i];
+                            co++;
+                        }
+                    }
+                    for (i = 0; i < co+1; i++) {
+                        v1[i] = parseInt(v1[i]);
+                    }
+                    for (i = 0; i< v2.length; i++){
+                        if(v2[i] == '+'){
+                            if(co2 == 0){
+                                answer = v1[0] + v1[1];
+                                co2 = 1;
+                            }
+                            else{
+                                answer = answer + v1[co1+1];
+                                co1++;
+                            }
+                        }
+                        if(v2[i] == '-'){
+                            if(co2 == 0){
+                                answer = v1[0] - v1[1];
+                                co2 = 1;
+                            }
+                            else{
+                                answer = answer - v1[co1+1];
+                                co1++;
+                            }
+                        }
+                        if(v2[i] == '*'){
+                            if(co2 == 0){
+                                answer = v1[0] * v1[1];
+                                co2 = 1;
+                            }
+                            else{
+                                answer = answer * v1[co1+1];
+                                co1++;
+                            }
+                        }
+                        if(v2[i] == '/'){
+                            if(co2 == 0){
+                                answer = v1[0] / v1[1];
+                                co2 = 1;
+                            }
+                            else{
+                                answer = answer / v1[co1+1];
+                                co1++;
+                            }
+                        }
+                    }
+                    $('#hasil').html(answer);
+                });
+                //reset
+	            $('#reset').click(function(){
+                    v = '';
+                    answer = 0;
+		            $('#hasil').html(0);
+	            });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="container my-sm-3 my-md-2 card" style="width:400px">
+            <div class="row pt-2">
+                <div class="col-12">
+                    <div class="display-4" id="hasil">0</div>
+                </div>
+            </div>
+            <hr>
+            <div class="row py-2">
+                <div class="col-3">
+                    <button type="button" class="btn btn-info btn-block" id="reset">C</button>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-info btn-block" id="plusmin">+/-</button>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-info btn-block" id="percent">%</button>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-warning btn-block" id="divide">/</button>
+                </div>
+            </div>
+            <div class="row py-2">
+                <div class="col-3">
+                    <button type="button" class="btn btn-secondary btn-block" id="seven">7</button>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-secondary btn-block" id="eight">8</button>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-secondary btn-block" id="nine">9</button>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-warning btn-block" id="multiply">x</button>
+                </div>
+            </div>
+            <div class="row py-2">
+                <div class="col-3">
+                    <button type="button" class="btn btn-secondary btn-block" id="four">4</button>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-secondary btn-block" id="five">5</button>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-secondary btn-block" id="six">6</button>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-warning btn-block" id="add">+</button>
+                </div>
+            </div>
+            <div class="row py-2">
+                <div class="col-3">
+                    <button type="button" class="btn btn-secondary btn-block" id="one">1</button>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-secondary btn-block" id="two">2</button>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-secondary btn-block" id="three">3</button>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-warning btn-block" id="subtract">-</button>
+                </div>
+            </div>
+            <div class="row pt-2 pb-4">
+                <div class="col-6">
+                    <button type="button" class="btn btn-secondary btn-block" id="nul">0</button>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-secondary btn-block" id="dec">.</button>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-warning btn-block" id="equal">=</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
